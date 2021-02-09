@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest --config jestconfig.json",
     "build": "webpack src/app.js -o public/bundle.js"
   },
   "keywords": [],
