@@ -1,13 +1,13 @@
 name: Node Continuous Integration
 
 on:
-  [push,pull_request]
+  [push, pull_request]
 
 jobs:
   test_pull_request:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout
+      - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
       - run: npm ci
       - run: npm test
@@ -16,5 +16,5 @@ jobs:
         uses: codecov/codecov-action@v1
         with:
           node-version: 12
-          files:./coverage/clover.xml
+          files: ./coverage/clover.xml
       
