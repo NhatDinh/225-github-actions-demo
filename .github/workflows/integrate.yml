@@ -1,9 +1,7 @@
 name: Node Continuous Integration
 
 on:
-  pull_request:
-    branches: [ master ]
-
+  [push, pull_request]
 
 jobs:
   test_pull_request:
@@ -11,8 +9,13 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
-        with:
-          node-version: 12
       - run: npm ci
       - run: npm test
       - run: npm run build
+      - name: Upload coverage to Codecov (script)
+        uses: codecov/codecov-action@v1
+        with:
+          node-version: 12
+          files: ./coverage/clover.xml
+          run: bash  <(curl -s https://codecov.io/bash) -f clover.xml
+      
